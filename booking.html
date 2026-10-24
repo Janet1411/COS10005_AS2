@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Book Cinema-X tickets: choose your film, session, ticket type and payment.">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <title>Book tickets | Cinema-X</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap">
+
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            <img src="images/logo.png" alt="" width="40" height="40">
+            Cinema-<span>X</span>
+        </a>
+
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="recommend.html">Recommend</a></li>
+                <li><a href="booking.html" class="active" aria-current="page">Book</a></li>
+                <li><a href="watchlist.html">Watchlist</a></li>
+            </ul>
+
+            <a href="register.html" class="btn btn-secondary">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- The form also wraps the ticket summary, so the summary's button can submit it.
+             novalidate: script.js checks every field and shows its own error messages. -->
+        <form id="booking-form" class="booking-layout" method="post"
+            action="http://mercury.swin.edu.au/it000000/cos10005/regtest.php" novalidate>
+            <section class="panel">
+                <h1>Book tickets</h1>
+                <p class="lead">Fill in the three sections below. Your ticket shows the price and total as you go.</p>
+
+                <fieldset class="form-section">
+                    <legend>Your details</legend>
+
+                    <div class="field">
+                        <label for="full-name">Full name</label>
+                        <input type="text" id="full-name" name="full_name" autocomplete="name"
+                            aria-describedby="full-name-error">
+                        <p class="field-error" aria-live="polite" id="full-name-error"></p>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" name="email" autocomplete="email"
+                                aria-describedby="email-error">
+                            <p class="field-error" aria-live="polite" id="email-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="phone">Phone number</label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel"
+                                aria-describedby="phone-hint phone-error">
+                            <p class="hint" id="phone-hint">At least 10 digits</p>
+                            <p class="field-error" aria-live="polite" id="phone-error"></p>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="form-section">
+                    <legend>Your session</legend>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="movie">Movie</label>
+                            <select id="movie" name="movie" aria-describedby="movie-error">
+                                <option value="">Select a film</option>
+                                <option value="inside-out-2">Inside Out 2</option>
+                                <option value="wild-robot">The Wild Robot</option>
+                                <option value="paddington-peru">Paddington in Peru</option>
+                                <option value="barbie">Barbie</option>
+                                <option value="top-gun-maverick">Top Gun: Maverick</option>
+                                <option value="dune-part-two">Dune: Part Two</option>
+                                <option value="quiet-place-day-one">A Quiet Place: Day One</option>
+                                <option value="past-lives">Past Lives</option>
+                                <option value="oppenheimer">Oppenheimer</option>
+                            </select>
+                            <p class="hint" id="movie-hint" hidden>Selected from the previous page. You can change it.</p>
+                            <p class="field-error" aria-live="polite" id="movie-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="screening">Screening date and time</label>
+                            <input type="datetime-local" id="screening" name="screening"
+                                aria-describedby="screening-error">
+                            <p class="field-error" aria-live="polite" id="screening-error"></p>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="tickets">Number of tickets</label>
+                            <input type="number" id="tickets" name="tickets" value="1" min="1"
+                                aria-describedby="tickets-error">
+                            <p class="field-error" aria-live="polite" id="tickets-error"></p>
+                        </div>
+                        <fieldset id="ticket-type" aria-describedby="ticket-type-error">
+                            <legend>Ticket type</legend>
+                            <div class="options">
+                                <label><input type="radio" name="ticket_type" value="adult" checked> Adult</label>
+                                <label><input type="radio" name="ticket_type" value="child"> Child (~30% off)</label>
+                                <label><input type="radio" name="ticket_type" value="student"> Student (~15% off)</label>
+                            </div>
+                            <p class="field-error" aria-live="polite" id="ticket-type-error"></p>
+                        </fieldset>
+                    </div>
+
+                    <div class="field">
+                        <label for="requests">Special requests (optional)</label>
+                        <textarea id="requests" name="requests" rows="3"
+                            placeholder="Wheelchair space, aisle seats"></textarea>
+                    </div>
+                </fieldset>
+
+                <fieldset class="form-section">
+                    <legend>Payment</legend>
+
+                    <fieldset id="payment" aria-describedby="payment-error">
+                        <legend>Payment method</legend>
+                        <div class="options">
+                            <label><input type="radio" name="payment" value="voucher"> Voucher</label>
+                            <label><input type="radio" name="payment" value="online"> Online payment</label>
+                        </div>
+                        <p class="field-error" aria-live="polite" id="payment-error"></p>
+                    </fieldset>
+
+                    <!-- Shown only when Voucher is selected -->
+                    <div class="field" id="voucher-fields" hidden>
+                        <label for="voucher">Voucher code</label>
+                        <input type="text" id="voucher" name="voucher" inputmode="numeric" maxlength="12"
+                            aria-describedby="voucher-hint">
+                        <p class="hint" id="voucher-hint">12 digits</p>
+                    </div>
+
+                    <!-- Shown only when Online payment is selected -->
+                    <div class="field-row" id="card-fields" hidden>
+                        <div class="field">
+                            <label for="card-type">Card type</label>
+                            <select id="card-type" name="card_type" aria-describedby="card-type-error">
+                                <option value="">Select card type</option>
+                                <option value="visa">Visa</option>
+                                <option value="mastercard">Mastercard</option>
+                                <option value="amex">American Express</option>
+                            </select>
+                            <p class="field-error" aria-live="polite" id="card-type-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="card-number">Card number</label>
+                            <input type="text" id="card-number" name="card_number" inputmode="numeric"
+                                autocomplete="cc-number" aria-describedby="card-number-hint card-number-error">
+                            <p class="hint" id="card-number-hint">Visa and Mastercard: 16 digits. Amex: 15 digits.</p>
+                            <p class="field-error" aria-live="polite" id="card-number-error"></p>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="billing-email">Billing email address</label>
+                        <input type="email" id="billing-email" name="billing_email"
+                            aria-describedby="billing-email-error">
+                        <p class="field-error" aria-live="polite" id="billing-email-error"></p>
+                    </div>
+
+                    <div class="options">
+                        <label><input type="checkbox" id="same-email" name="same_email"> Same as email address</label>
+                    </div>
+                </fieldset>
+            </section>
+
+            <aside class="ticket stub" aria-labelledby="ticket-title">
+                <h2 id="ticket-title">Your ticket</h2>
+                <dl class="ticket-details">
+                    <dt>Film</dt>
+                    <dd id="summary-movie">Not selected</dd>
+                    <dt>Session</dt>
+                    <dd id="summary-session">Not selected</dd>
+                    <dt>Tickets</dt>
+                    <dd id="summary-tickets">1 &times; Adult</dd>
+                    <dt>Price each</dt>
+                    <dd id="summary-price">&ndash;</dd>
+                </dl>
+                <p class="ticket-total">Total <output id="total" for="movie tickets">$0.00</output></p>
+                <!-- <output> values aren't submitted, so the total is sent in this hidden field -->
+                <input type="hidden" id="booking-cost" name="booking_cost" value="0.00">
+                <button type="submit" class="btn btn-primary">Confirm booking</button>
+            </aside>
+        </form>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <p class="footer-tagline">
+                Discover.
+                <br>
+                Decide.
+                <br>
+                <span>Book.</span>
+            </p>
+
+            <address>
+                77 Dream Factory Lane, Melbourne VIC 3000
+                <br>
+                <a href="tel:+61355504729">(03) 5550 4729</a>
+                &middot;
+                <a href="mailto:hello@cinema-x.example">hello@cinema-x.example</a>
+                <br>
+                Open daily, 10am to midnight
+            </address>
+        </div>
+
+        <p class="footer-credit">
+            &copy; 2026 Cinema-X.
+            Film posters belong to their respective studios.
+            Image credits are listed in Readme.txt.
+        </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

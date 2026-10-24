@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Get film recommendations based on genre, age group and who you're watching with.">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <title>Recommend | Cinema-X</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap">
+
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            <img src="images/logo.png" alt="" width="40" height="40">
+            Cinema-<span>X</span>
+        </a>
+
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="recommend.html" class="active" aria-current="page">Recommend</a></li>
+                <li><a href="booking.html">Book</a></li>
+                <li><a href="watchlist.html">Watchlist</a></li>
+            </ul>
+
+            <a href="register.html" class="btn btn-secondary">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="panel">
+            <h1>Get film recommendations</h1>
+            <p class="lead">Pick a genre, age group and who you're watching with. We'll suggest up to 3 films.</p>
+
+            <!-- novalidate: script.js shows its own message instead of the browser's pop-up -->
+            <form id="recommend-form" novalidate>
+                <div class="questions">
+                    <fieldset>
+                        <legend>Preferred genre</legend>
+                        <div class="options">
+                            <label><input type="radio" name="genre" value="action"> Action</label>
+                            <label><input type="radio" name="genre" value="comedy"> Comedy</label>
+                            <label><input type="radio" name="genre" value="animation"> Animation</label>
+                            <label><input type="radio" name="genre" value="drama"> Drama</label>
+                            <label><input type="radio" name="genre" value="sci-fi"> Sci-Fi</label>
+                            <label><input type="radio" name="genre" value="horror"> Horror</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Age group</legend>
+                        <div class="options">
+                            <label><input type="radio" name="age" value="child"> Child</label>
+                            <label><input type="radio" name="age" value="teen"> Teen</label>
+                            <label><input type="radio" name="age" value="adult"> Adult</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Watching with</legend>
+                        <div class="options">
+                            <label><input type="radio" name="preference" value="family"> Family</label>
+                            <label><input type="radio" name="preference" value="date"> Date night</label>
+                            <label><input type="radio" name="preference" value="friends"> Friends</label>
+                            <label><input type="radio" name="preference" value="solo"> Solo</label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <p class="form-error" id="recommend-error" role="alert"></p>
+
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">Find my film</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- aria-live announces new results to screen readers when they appear -->
+        <section class="panel" id="results-panel" aria-live="polite">
+            <h2 id="results-title">Recommended films</h2>
+            <p class="meta" id="results-summary">Your recommendations will appear here after you submit the form.</p>
+            <ol class="results" id="results"></ol>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <p class="footer-tagline">
+                Discover.
+                <br>
+                Decide.
+                <br>
+                <span>Book.</span>
+            </p>
+
+            <address>
+                77 Dream Factory Lane, Melbourne VIC 3000
+                <br>
+                <a href="tel:+61355504729">(03) 5550 4729</a>
+                &middot;
+                <a href="mailto:hello@cinema-x.example">hello@cinema-x.example</a>
+                <br>
+                Open daily, 10am to midnight
+            </address>
+        </div>
+
+        <p class="footer-credit">
+            &copy; 2026 Cinema-X.
+            Film posters belong to their respective studios.
+            Image credits are listed in Readme.txt.
+        </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

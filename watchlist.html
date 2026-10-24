@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="The films you have saved to watch at Cinema-X.">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <title>Watchlist | Cinema-X</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap">
+
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            <img src="images/logo.png" alt="" width="40" height="40">
+            Cinema-<span>X</span>
+        </a>
+
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="recommend.html">Recommend</a></li>
+                <li><a href="booking.html">Book</a></li>
+                <li><a href="watchlist.html" class="active" aria-current="page">Watchlist</a></li>
+            </ul>
+
+            <a href="register.html" class="btn btn-secondary">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="panel">
+            <h1>Your watchlist</h1>
+            <!-- tabindex="-1" lets script.js move focus here after a film is removed -->
+            <p class="count" id="watchlist-count" tabindex="-1"></p>
+            <p class="meta">Kept while this browser tab is open.</p>
+
+            <!-- script.js fills this list from sessionStorage -->
+            <ul class="watchlist-grid" id="watchlist"></ul>
+
+            <!-- Blank ticket in place of the list when nothing is saved -->
+            <a href="movies.html" class="stub blank" id="watchlist-empty" hidden>
+                <strong>Your next film goes here</strong>
+                Browse movies and press "+ Watchlist" to save one.
+            </a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <p class="footer-tagline">
+                Discover.
+                <br>
+                Decide.
+                <br>
+                <span>Book.</span>
+            </p>
+
+            <address>
+                77 Dream Factory Lane, Melbourne VIC 3000
+                <br>
+                <a href="tel:+61355504729">(03) 5550 4729</a>
+                &middot;
+                <a href="mailto:hello@cinema-x.example">hello@cinema-x.example</a>
+                <br>
+                Open daily, 10am to midnight
+            </address>
+        </div>
+
+        <p class="footer-credit">
+            &copy; 2026 Cinema-X.
+            Film posters belong to their respective studios.
+            Image credits are listed in Readme.txt.
+        </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

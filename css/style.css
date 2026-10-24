@@ -1,0 +1,897 @@
+/*
+  Cinema-X stylesheet
+  Mobile first: the base rules are the phone layout (767px and below).
+  The two media queries at the end add tablet (768px+) and desktop (1024px+).
+*/
+
+/* 1. Variables */
+:root {
+    color-scheme: dark;
+
+    --bg: #0e0e0e;
+    --panel: rgba(14, 14, 14, 0.6);
+    --line: rgba(255, 255, 255, 0.12);
+    --field-border: rgba(255, 255, 255, 0.25);
+    --text: #f5f5f5;
+    --text-muted: #c9c9c9;
+    --accent: #ff4d2e;
+    --accent-hover: #ff6a4f;
+    --accent-soft: #ffb199;
+    --error: #ff8a8a;
+    --success: #8fe3a1;
+
+    --font-display: "Archivo Black", "Arial Black", sans-serif;
+
+    --radius: 12px;
+    --radius-small: 8px;
+    --gap: 1.5rem;
+    --gutter: 1.25rem;
+    --max-width: 1200px;
+
+    /* Perforated film edge, shared by the footer and the home filmstrip */
+    --perforation: repeating-linear-gradient(90deg, var(--accent) 0 12px, transparent 12px 22px);
+}
+
+/* 2. Base */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Blurred film still under a dark overlay, fixed so the panels scroll over it */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(rgba(14, 14, 14, 0.45), rgba(14, 14, 14, 0.45)),
+        url("../images/bg-featured.jpg") center / cover fixed var(--bg);
+    color: var(--text);
+    font: 1rem / 1.6 "Inter", Arial, sans-serif;
+    accent-color: var(--accent);
+}
+
+/* Archivo Black has one weight; 400 stops the browser faking a bolder one */
+h1, h2, h3 {
+    margin: 0 0 0.5em;
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+a {
+    color: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Every list on the site is used for layout, so none need bullets */
+ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Classes that set display would otherwise override the hidden attribute */
+[hidden] {
+    display: none !important;
+}
+
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* 3. Header and navigation */
+/* The deep bottom padding is the fade zone that main is pulled up into */
+.site-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.25rem var(--gutter) 4rem;
+    background: linear-gradient(180deg, var(--bg) 0%, rgba(14, 14, 14, 0.85) 35%, rgba(14, 14, 14, 0) 100%);
+}
+
+.brand {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.site-header nav {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.site-header ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.25rem;
+}
+
+.site-header ul a {
+    display: block;
+    padding: 0.4rem 0;
+    border-bottom: 3px solid transparent;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.site-header ul a:hover, .site-header ul a.active {
+    border-bottom-color: var(--accent);
+    color: var(--text);
+}
+
+/* 4. Page layout */
+main {
+    display: grid;
+    flex: 1;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: var(--gap);
+    width: 100%;
+    max-width: var(--max-width);
+    margin: -2.5rem auto 0;
+    padding: 0 var(--gutter) 3rem;
+}
+
+.split, .booking-layout {
+    display: grid;
+    align-items: start;
+    gap: var(--gap);
+}
+
+.narrow {
+    justify-self: center;
+    width: 100%;
+    max-width: 50rem;
+}
+
+/* 5. Reusable components */
+.panel {
+    padding: var(--gap);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+}
+
+.lead {
+    color: var(--text-muted);
+    font-size: 1.125rem;
+}
+
+.meta, .hint {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.brand span, .hero h1 span, .footer-tagline span {
+    color: var(--accent);
+}
+
+/* Buttons: filled orange for the main action, a quiet outline for the second,
+   and an underlined text button for the least important (Remove) */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.4rem;
+    border: 1.5px solid transparent;
+    border-radius: 3px;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--bg);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Arrow on main actions, to show the button moves you on */
+.btn-primary::after {
+    content: " \2192";
+}
+
+.btn-secondary {
+    border-color: var(--field-border);
+}
+
+.btn-secondary:hover {
+    border-color: var(--text);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* The Register button on its own page, and a film already in the watchlist */
+.btn-secondary.active {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-text {
+    padding: 0.75rem 0.25rem;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+/* Official Australian classification colours, with text colours that pass contrast */
+.rating {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+
+.rating-pg {
+    background-color: #ffd200;
+    color: var(--bg);
+}
+
+.rating-m {
+    background-color: #0072bc;
+}
+
+.rating-ma {
+    background-color: #e2231a;
+}
+
+/* Ticket stub for the booking summary and watchlist cards:
+   two half-width gradients each cut a round notch at their outer edge.
+   --stub-colour lets the blank watchlist ticket reuse the same shape. */
+.stub {
+    --stub-colour: var(--accent);
+    border-radius: var(--radius);
+    background:
+        radial-gradient(circle at 0 62%, transparent 12px, var(--stub-colour) 13px) left / 51% 100% no-repeat,
+        radial-gradient(circle at 100% 62%, transparent 12px, var(--stub-colour) 13px) right / 51% 100% no-repeat;
+    color: var(--bg);
+}
+
+.stub .meta {
+    color: inherit;
+}
+
+/* Orange buttons would vanish on an orange ticket, so they turn black */
+.stub .btn {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* 6. Forms */
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+legend {
+    margin-bottom: 0.6rem;
+    padding: 0;
+    font-weight: 600;
+}
+
+.form-section {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.form-section > legend {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    cursor: pointer;
+}
+
+/* align-content: start stops inputs stretching to match a taller neighbour */
+.field {
+    display: grid;
+    align-content: start;
+    gap: 0.35rem;
+}
+
+.field label {
+    font-weight: 600;
+}
+
+.field-row {
+    display: grid;
+    gap: 1rem;
+}
+
+.field input, .field select, .field textarea {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 1.5px solid var(--field-border);
+    border-radius: var(--radius-small);
+    background-color: rgba(255, 255, 255, 0.06);
+    color: inherit;
+    font: inherit;
+}
+
+/* Set by script.js when a field fails validation */
+.field [aria-invalid="true"] {
+    border-color: var(--error);
+}
+
+.field input[readonly] {
+    color: var(--text-muted);
+}
+
+/* Errors use a light red, never the orange accent, so the two can't be confused */
+.form-error {
+    margin: 1rem 0 0;
+    color: var(--error);
+    font-weight: 600;
+}
+
+.field-error {
+    margin: 0;
+    color: var(--error);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* The warning sign means errors aren't shown by colour alone */
+.field-error::before {
+    content: "\26A0  ";
+}
+
+.form-error:empty, .field-error:empty {
+    display: none;
+}
+
+.checklist {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.checklist li::before {
+    content: "\25CB  ";
+}
+
+.checklist .met {
+    color: var(--success);
+}
+
+.checklist .met::before {
+    content: "\2713  ";
+}
+
+.form-success {
+    margin: var(--gap) 0 0;
+    padding: 1rem;
+    border: 1px solid var(--success);
+    border-radius: var(--radius-small);
+    color: var(--success);
+    font-weight: 600;
+}
+
+/* Booking summary; the submit button lives here so the total is seen before confirming */
+.ticket {
+    padding: var(--gap) 1.75rem;
+}
+
+.ticket-details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.4rem 1rem;
+    margin: 0;
+}
+
+.ticket-details dd {
+    margin: 0;
+    text-align: right;
+}
+
+/* Dashed line above the total, like a tear-off strip */
+.ticket-total {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 1.25rem 0;
+    padding-top: 1rem;
+    border-top: 2px dashed var(--bg);
+    font-weight: 600;
+}
+
+.ticket-total output {
+    font-family: var(--font-display);
+    font-size: 2rem;
+}
+
+.ticket .btn {
+    width: 100%;
+}
+
+/* 7. Home page */
+.hero {
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+}
+
+.hero .lead {
+    max-width: 42rem;
+    margin: 0 auto;
+}
+
+.hero .actions {
+    justify-content: center;
+}
+
+/* Scrolls sideways on small screens, like film running through a projector */
+.filmstrip {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    margin: 2.5rem 0 0.75rem;
+    padding: 1.25rem 0.75rem;
+    background:
+        var(--perforation) top / 100% 8px no-repeat,
+        var(--perforation) bottom / 100% 8px no-repeat,
+        var(--bg);
+}
+
+.filmstrip li {
+    flex: 0 0 7rem;
+}
+
+.filmstrip a {
+    display: block;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+/* Number and title on one line, description underneath; all in one row from tablet up */
+.steps li {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    align-items: baseline;
+    gap: 0 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px dashed var(--field-border);
+}
+
+.steps li:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.num {
+    grid-row: span 2;
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.steps h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.steps h3 a {
+    text-decoration: none;
+}
+
+.steps p {
+    grid-column: 2;
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.points {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.points li {
+    padding-left: 1rem;
+    border-left: 3px solid var(--accent);
+}
+
+.points h3 {
+    margin-bottom: 0.25rem;
+    font-size: 1.125rem;
+}
+
+.points p {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+/* 8. Movies page: one film per row, like a cinema session board */
+.film {
+    display: grid;
+    gap: 1rem 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.film:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.film img {
+    width: 8rem;
+    border-radius: var(--radius-small);
+}
+
+.film h2 {
+    margin-bottom: 0.25rem;
+    font-size: 1.375rem;
+}
+
+.film p {
+    margin: 0 0 0.5rem;
+}
+
+.sessions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    font-size: 0.875rem;
+}
+
+.price {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+}
+
+/* 9. Recommend page */
+.questions {
+    display: grid;
+    gap: var(--gap);
+    margin-top: var(--gap);
+}
+
+.questions .options {
+    flex-direction: column;
+}
+
+.results {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Poster beside the details on phones, above them from tablet up */
+.result {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.result.best {
+    border-color: var(--accent);
+}
+
+.result img {
+    flex-shrink: 0;
+    align-self: flex-start;
+    width: 5rem;
+    border-radius: var(--radius-small);
+}
+
+.best-label {
+    margin-left: 0.5rem;
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.result h3 {
+    margin: 0.4rem 0 0.25rem;
+    font-size: 1.125rem;
+}
+
+.reasons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent-soft);
+    font-size: 0.8125rem;
+}
+
+/* 10. Watchlist page */
+.count {
+    margin: 0;
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+}
+
+.watchlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: var(--gap);
+    margin-top: var(--gap);
+}
+
+.watch-card {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    align-content: start;
+    gap: 0.25rem 1rem;
+    padding: 1.25rem 1.75rem;
+}
+
+.watch-card img {
+    grid-row: span 4;
+    border-radius: 4px;
+}
+
+.watch-card .rating {
+    justify-self: start;
+}
+
+.watch-card h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+/* Empty watchlist: a grey ticket that links to the Movies page */
+.blank {
+    --stub-colour: #262626;
+    display: grid;
+    gap: 0.25rem;
+    max-width: 26rem;
+    padding: 1.5rem 1.75rem;
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.blank strong {
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+/* 11. Footer */
+.site-footer {
+    padding-top: 3rem;
+    background: linear-gradient(180deg, rgba(14, 14, 14, 0), var(--bg) 3rem);
+}
+
+.site-footer::before {
+    content: "";
+    display: block;
+    height: 8px;
+    background: var(--perforation);
+}
+
+.footer-grid {
+    display: grid;
+    align-items: center;
+    gap: 2rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem var(--gutter);
+    text-align: center;
+}
+
+.footer-tagline {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+address {
+    color: var(--text-muted);
+    font-style: normal;
+    line-height: 2;
+}
+
+address a {
+    border-bottom: 2px solid var(--accent);
+    text-decoration: none;
+}
+
+.footer-credit {
+    margin: 0;
+    padding: 1rem var(--gutter);
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* 12. Tablet: 768px and up */
+@media (min-width: 768px) {
+    :root {
+        --gutter: 2rem;
+    }
+
+    /* Logo on the first line; links and Register wrap onto a second line */
+    .site-header {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .site-header nav {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+
+    .site-header ul {
+        gap: 1.25rem;
+        margin: 0 auto;
+    }
+
+    .split, .field-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .perks, .questions {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero h1 {
+        font-size: 3.75rem;
+    }
+
+    .steps li {
+        grid-template-columns: 4.5rem 14rem 1fr;
+    }
+
+    .num {
+        grid-row: auto;
+    }
+
+    .steps p {
+        grid-column: 3;
+    }
+
+    .film {
+        grid-template-columns: 8rem minmax(0, 1fr);
+    }
+
+    .sessions, .film-buy {
+        grid-column: 2;
+    }
+
+    .results {
+        grid-template-columns: repeat(3, minmax(0, 15rem));
+    }
+
+    .result {
+        flex-direction: column;
+    }
+
+    .result img {
+        width: 100%;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+    }
+}
+
+/* 13. Desktop: 1024px and up */
+@media (min-width: 1024px) {
+    .site-header {
+        flex-wrap: nowrap;
+    }
+
+    .site-header nav {
+        width: auto;
+    }
+
+    .site-header ul {
+        gap: 2rem;
+    }
+
+    .booking-layout {
+        grid-template-columns: 1.6fr 1fr;
+    }
+
+    .hero h1 {
+        font-size: 4.5rem;
+    }
+
+    /* All nine posters fit across, so the strip stops scrolling */
+    .filmstrip li {
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* Sessions and price move into their own columns */
+    .film {
+        grid-template-columns: 8rem minmax(0, 1fr) 9rem 11rem;
+    }
+
+    .sessions {
+        grid-column: auto;
+        flex-direction: column;
+    }
+
+    .film-buy {
+        grid-column: auto;
+    }
+
+    /* The ticket stays in view while the long booking form scrolls */
+    .ticket {
+        position: sticky;
+        top: 1.5rem;
+    }
+}

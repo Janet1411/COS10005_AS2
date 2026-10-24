@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Create a Cinema-X account to save films and get recommendations based on your favourite genres.">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <title>Register | Cinema-X</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap">
+
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            <img src="images/logo.png" alt="" width="40" height="40">
+            Cinema-<span>X</span>
+        </a>
+
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="recommend.html">Recommend</a></li>
+                <li><a href="booking.html">Book</a></li>
+                <li><a href="watchlist.html">Watchlist</a></li>
+            </ul>
+
+            <a href="register.html" class="btn btn-secondary active" aria-current="page">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="panel narrow">
+            <h1>Create your account</h1>
+            <p class="lead">All fields are required.</p>
+
+            <!-- Hidden heading keeps the outline h1 > h2 > h3 for screen readers -->
+            <h2 class="visually-hidden">Why register</h2>
+            <ul class="points perks">
+                <li>
+                    <h3>Recommendations</h3>
+                    <p>Get film suggestions based on the genres you choose.</p>
+                </li>
+                <li>
+                    <h3>Watchlist</h3>
+                    <p>Save films while you browse and come back to them later.</p>
+                </li>
+                <li>
+                    <h3>Online booking</h3>
+                    <p>Book tickets and pay by card or voucher.</p>
+                </li>
+            </ul>
+
+            <!-- novalidate: script.js checks every field and shows its own error messages -->
+            <form id="register-form" novalidate>
+                <fieldset class="form-section">
+                    <legend>Account</legend>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" autocomplete="username"
+                                aria-describedby="username-hint username-error">
+                            <p class="hint" id="username-hint">At least 5 characters: letters, numbers or underscores</p>
+                            <p class="field-error" aria-live="polite" id="username-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="reg-email">Email address</label>
+                            <input type="email" id="reg-email" name="email" autocomplete="email"
+                                aria-describedby="reg-email-error">
+                            <p class="field-error" aria-live="polite" id="reg-email-error"></p>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" autocomplete="new-password"
+                                aria-describedby="password-rules password-error">
+                            <ul class="checklist" id="password-rules">
+                                <li id="rule-length">At least 10 characters</li>
+                                <li id="rule-upper">An uppercase letter</li>
+                                <li id="rule-lower">A lowercase letter</li>
+                                <li id="rule-number">A number</li>
+                                <li id="rule-special">A special character, like ! @ # $</li>
+                            </ul>
+                            <p class="field-error" aria-live="polite" id="password-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="confirm-password">Confirm password</label>
+                            <input type="password" id="confirm-password" name="confirm_password"
+                                autocomplete="new-password" aria-describedby="confirm-password-error">
+                            <p class="field-error" aria-live="polite" id="confirm-password-error"></p>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="form-section">
+                    <legend>About you</legend>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="reg-phone">Phone number</label>
+                            <input type="tel" id="reg-phone" name="phone" autocomplete="tel"
+                                aria-describedby="reg-phone-hint reg-phone-error">
+                            <p class="hint" id="reg-phone-hint">8 to 15 digits, numbers only</p>
+                            <p class="field-error" aria-live="polite" id="reg-phone-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="country">Country or region</label>
+                            <select id="country" name="country" autocomplete="country-name"
+                                aria-describedby="country-error">
+                                <option value="">Select your country or region</option>
+                                <option value="australia">Australia</option>
+                                <option value="new-zealand">New Zealand</option>
+                                <option value="china">China</option>
+                                <option value="hong-kong">Hong Kong</option>
+                                <option value="india">India</option>
+                                <option value="indonesia">Indonesia</option>
+                                <option value="malaysia">Malaysia</option>
+                                <option value="singapore">Singapore</option>
+                                <option value="united-kingdom">United Kingdom</option>
+                                <option value="united-states">United States</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <p class="field-error" aria-live="polite" id="country-error"></p>
+                        </div>
+                    </div>
+
+                    <fieldset id="gender" aria-describedby="gender-error">
+                        <legend>Gender</legend>
+                        <div class="options">
+                            <label><input type="radio" name="gender" value="female"> Female</label>
+                            <label><input type="radio" name="gender" value="male"> Male</label>
+                            <label><input type="radio" name="gender" value="non-binary"> Non-binary</label>
+                            <label><input type="radio" name="gender" value="prefer-not-to-say"> Prefer not to say</label>
+                        </div>
+                        <p class="field-error" aria-live="polite" id="gender-error"></p>
+                    </fieldset>
+
+                    <fieldset id="genres" aria-describedby="genres-error">
+                        <legend>Preferred movie genres (choose one or more)</legend>
+                        <div class="options">
+                            <label><input type="checkbox" name="genres" value="action"> Action</label>
+                            <label><input type="checkbox" name="genres" value="comedy"> Comedy</label>
+                            <label><input type="checkbox" name="genres" value="animation"> Animation</label>
+                            <label><input type="checkbox" name="genres" value="drama"> Drama</label>
+                            <label><input type="checkbox" name="genres" value="sci-fi"> Sci-Fi</label>
+                            <label><input type="checkbox" name="genres" value="horror"> Horror</label>
+                        </div>
+                        <p class="field-error" aria-live="polite" id="genres-error"></p>
+                    </fieldset>
+                </fieldset>
+
+                <p class="form-success" id="register-success" role="status" hidden>Your account has been created.
+                    This is a demonstration form, so no details were sent or saved.</p>
+
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">Create account</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <p class="footer-tagline">
+                Discover.
+                <br>
+                Decide.
+                <br>
+                <span>Book.</span>
+            </p>
+
+            <address>
+                77 Dream Factory Lane, Melbourne VIC 3000
+                <br>
+                <a href="tel:+61355504729">(03) 5550 4729</a>
+                &middot;
+                <a href="mailto:hello@cinema-x.example">hello@cinema-x.example</a>
+                <br>
+                Open daily, 10am to midnight
+            </address>
+        </div>
+
+        <p class="footer-credit">
+            &copy; 2026 Cinema-X.
+            Film posters belong to their respective studios.
+            Image credits are listed in Readme.txt.
+        </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

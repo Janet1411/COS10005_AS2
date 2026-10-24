@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Browse films now showing at Cinema-X, with ratings, session times and ticket prices.">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <title>Movies | Cinema-X</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap">
+
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            <img src="images/logo.png" alt="" width="40" height="40">
+            Cinema-<span>X</span>
+        </a>
+
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html" class="active" aria-current="page">Movies</a></li>
+                <li><a href="recommend.html">Recommend</a></li>
+                <li><a href="booking.html">Book</a></li>
+                <li><a href="watchlist.html">Watchlist</a></li>
+            </ul>
+
+            <a href="register.html" class="btn btn-secondary">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="panel">
+            <h1>Now showing</h1>
+            <p class="lead">9 films with sessions every day. Prices shown are for adult tickets. Child tickets are 30%
+                off and student tickets are 15% off, applied when you book.</p>
+
+            <!-- Each id matches the ?movie= value that booking.html reads -->
+            <article class="film" id="inside-out-2">
+                <img src="images/inside-out-2.jpg" alt="Inside Out 2 film poster" width="400" height="600">
+                <div>
+                    <h2>Inside Out 2</h2>
+                    <p class="meta"><span class="rating rating-pg"><span class="visually-hidden">Rated </span>PG</span>
+                        Animation / Comedy &middot; 96 min</p>
+                    <p>Riley has just turned thirteen, and the emotions running her mind are about to get some
+                        unexpected company. When Anxiety, Envy, Embarrassment and Ennui move into Headquarters, Joy and
+                        the original team are pushed aside right before a high-stakes weekend at hockey camp. Bright,
+                        funny and surprisingly honest about growing up, this Pixar sequel gives younger viewers a
+                        colourful adventure while reminding adults what it felt like to be a teenager.</p>
+                </div>
+                <ul class="sessions" aria-label="Session times">
+                    <li>Sat 10:00 am</li>
+                    <li>Sat 2:00 pm</li>
+                    <li>Sun 11:30 am</li>
+                </ul>
+                <div class="film-buy">
+                    <p class="price">$15.00</p>
+                    <div class="actions">
+                        <a href="booking.html?movie=inside-out-2" class="btn btn-primary">Book now</a>
+                        <button type="button" class="btn btn-secondary" data-movie="inside-out-2">+ Watchlist</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="film" id="wild-robot">
+                <img src="images/wild-robot.jpg" alt="The Wild Robot film poster" width="400" height="600">
+                <div>
+                    <h2>The Wild Robot</h2>
+                    <p class="meta"><span class="rating rating-pg"><span class="visually-hidden">Rated </span>PG</span>
+                        Animation / Adventure &middot; 102 min</p>
+                    <p>Washed ashore on a remote island after a storm, a service robot named Roz has no one to help her
+                        and no idea how to survive among wild animals who see her as a monster. Everything changes when
+                        she finds herself caring for an orphaned gosling and must teach him to swim, fly and eventually
+                        migrate. Beautifully animated and deeply moving, it is a story about kindness, belonging and
+                        what it really means to be a family.</p>
+                </div>
+                <ul class="sessions" aria-label="Session times">
+                    <li>Sat 11:00 am</li>
+                    <li>Sun 1:00 pm</li>
+                    <li>Sun 4:00 pm</li>
+                </ul>
+                <div class="film-buy">
+                    <p class="price">$15.00</p>
+                    <div class="actions">
+                        <a href="booking.html?movie=wild-robot" class="btn btn-primary">Book now</a>
+                        <button type="button" class="btn btn-secondary" data-movie="wild-robot">+ Watchlist</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="film" id="paddington-peru">
+                <img src="images/paddington-peru.jpg" alt="Paddington in Peru film poster" width="400" height="600">
+                <div>
+                    <h2>Paddington in Peru</h2>
+                    <p class="meta"><span class="rating rating-pg"><span class="visually-hidden">Rated </span>PG</span>
+                        Comedy / Adventure &middot; 106 min</p>
+                    <p>Paddington and the Brown family swap rainy London for the Peruvian jungle when they learn that
+                        Aunt Lucy has gone missing from her home for retired bears. With an old map, a riverboat captain
+                        they are not sure they can trust and plenty of marmalade, the search becomes a rollicking
+                        adventure through rainforest and mountains. Full of slapstick, warmth and gentle humour, it is a
+                        feel-good outing the whole family can enjoy together.</p>
+                </div>
+                <ul class="sessions" aria-label="Session times">
+                    <li>Fri 4:30 pm</li>
+                    <li>Sat 12:30 pm</li>
+                    <li>Sun 10:30 am</li>
+                </ul>
+                <div class="film-buy">
+                    <p class="price">$15.00</p>
+                    <div class="actions">
+                        <a href="booking.html?movie=paddington-peru" class="btn btn-primary">Book now</a>
+                        <button type="button" class="btn btn-secondary" data-movie="paddington-peru">+ Watchlist</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="film" id="barbie">
+                <img src="images/barbie.jpg" alt="Barbie film poster" width="400" height="600">
+                <div>
+                    <h2>Barbie</h2>
+                    <p class="meta"><span class="rating rating-pg"><span class="visually-hidden">Rated </span>PG</span>
+                        Comedy &middot; 114 min</p>
+                    <p>Life in Barbieland is perfect until Barbie suddenly starts having strange thoughts, waking up
+                        with flat feet and noticing that something feels wrong. To fix it, she and a very eager Ken
+                        travel to the real world, where they discover that things work very differently. Bold, hilarious
+                        and packed with bright pink set design, Greta Gerwig's comedy is a sharp, playful look at
+                        identity, expectations and finding out who you really are.</p>
+                </div>
+                <ul class="sessions" aria-label="Session times">
+                    <li>Fri 6:00 pm</li>
+                    <li>Sat 3:30 pm</li>
+                    <li>Sat 8:00 pm</li>
+                </ul>
+                <div class="film-buy">
+                    <p class="price">$17.50</p>
+                    <div class="actions">
+                        <a href="booking.html?movie=barbie" class="btn btn-primary">Book now</a>
+                        <button type="button" class="btn btn-secondary" data-movie="barbie">+ Watchlist</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="film" id="top-gun-maverick">
+                <img src="images/top-gun-maverick.jpg" alt="Top Gun: Maverick film poster" width="400" height="600">
+                <div>
+                    <h2>Top Gun: Maverick</h2>
+                    <p class="meta"><span class="rating rating-m"><span class="visually-hidden">Rated </span>M</span>
+                        Action / Drama &middot; 130 min</p>
+                    <p>More than thirty years after flight school, Pete "Maverick" Mitchell is still testing jets and
+                        still avoiding the promotions that would keep him on the ground. He is called back to train a
+                        team of elite young pilots for a near-impossible mission, including the son of his late best
+                        friend. With real aerial stunts filmed inside the cockpit and a surprisingly emotional core,
+                        this is big-screen action at its most thrilling.</p>
+                </div>
+                <ul class="sessions" aria-label="Session times">
+                    <li>Fri 7:30 pm</li>
+                    <li>Sat 5:00 pm</li>
+                    <li>Sun 7:00 pm</li>
+                </ul>
+                <div class="film-buy">
+                    <p class="price">$19.50</p>
+                    <div class="actions">
+                        <a href="booking.html?movie=top-gun-maverick" class="btn btn-primary">Book now</a>
+                        <button type="button" class="btn btn-secondary" data-movie="top-gun-maverick">+ Watchlist</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="film" id="dune-part-two">
+                <img src="images/dune-part-two.jpg" alt="Dune: Part Two film poster" width="400" height="600">
+                <div>
+                    <h2>Dune: Part Two</h2>
+                    <p class="meta"><span class="rating rating-m"><span class="visually-hidden">Rated </span>M</span>
+                        Sci-Fi / Action &middot; 166 min</p>
+                    <p>After the fall of his family, Paul Atreides joins the desert-dwelling Fremen on the planet
+                        Arrakis and learns to survive among giant sandworms. As his bond with the warrior Chani grows,
+                        Paul must choose between revenge on those who betrayed him and a prophecy that could set the
+                        galaxy on fire. Epic in scale, with stunning visuals and a thundering score, this science
+                        fiction sequel is made for the biggest screen possible.</p>
+                </div>
+                <ul class="sessions" aria-label="Session times">
+                    <li>Fri 7:00 pm</li>
+                    <li>Sat 1:30 pm</li>
+                    <li>Sun 6:15 pm</li>
+                </ul>
+                <div class="film-buy">
+                    <p class="price">$21.00</p>
+                    <div class="actions">
+                        <a href="booking.html?movie=dune-part-two" class="btn btn-primary">Book now</a>
+                        <button type="button" class="btn btn-secondary" data-movie="dune-part-two">+ Watchlist</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="film" id="quiet-place-day-one">
+                <img src="images/quiet-place-day-one.jpg" alt="A Quiet Place: Day One film poster" width="400"
+                    height="600">
+                <div>
+                    <h2>A Quiet Place: Day One</h2>
+                    <p class="meta"><span class="rating rating-m"><span class="visually-hidden">Rated </span>M</span>
+                        Horror / Sci-Fi &middot; 100 min</p>
+                    <p>On the day creatures that hunt by sound fall from the sky, Sam is in New York City with only her
+                        cat, Frodo, for company. As the city goes silent around her, she forms an unlikely friendship
+                        with a frightened law student while trying to reach one place that matters to her. Tense,
+                        heartfelt and full of nerve-shredding silence, this prequel shows how the invasion began.</p>
+                </div>
+                <ul class="sessions" aria-label="Session times">
+                    <li>Fri 9:30 pm</li>
+                    <li>Sat 9:45 pm</li>
+                </ul>
+                <div class="film-buy">
+                    <p class="price">$17.50</p>
+                    <div class="actions">
+                        <a href="booking.html?movie=quiet-place-day-one" class="btn btn-primary">Book now</a>
+                        <button type="button" class="btn btn-secondary" data-movie="quiet-place-day-one">+ Watchlist</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="film" id="past-lives">
+                <img src="images/past-lives.jpg" alt="Past Lives film poster" width="400" height="600">
+                <div>
+                    <h2>Past Lives</h2>
+                    <p class="meta"><span class="rating rating-m"><span class="visually-hidden">Rated </span>M</span>
+                        Drama / Romance &middot; 106 min</p>
+                    <p>Nora and Hae Sung were inseparable as children in Seoul until Nora's family moved overseas.
+                        Twenty years later, after reconnecting online and drifting apart again, Hae Sung travels to New
+                        York to see her for one week, even though Nora is now married. Quiet, tender and beautifully
+                        acted, this drama is a thoughtful story about first love, the paths we choose and the lives we
+                        leave behind.</p>
+                </div>
+                <ul class="sessions" aria-label="Session times">
+                    <li>Fri 6:30 pm</li>
+                    <li>Sun 5:30 pm</li>
+                </ul>
+                <div class="film-buy">
+                    <p class="price">$17.50</p>
+                    <div class="actions">
+                        <a href="booking.html?movie=past-lives" class="btn btn-primary">Book now</a>
+                        <button type="button" class="btn btn-secondary" data-movie="past-lives">+ Watchlist</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="film" id="oppenheimer">
+                <img src="images/oppenheimer.jpg" alt="Oppenheimer film poster" width="400" height="600">
+                <div>
+                    <h2>Oppenheimer</h2>
+                    <p class="meta"><span class="rating rating-ma"><span class="visually-hidden">Rated </span>MA15+</span>
+                        Drama / History &middot; 180 min</p>
+                    <p>Christopher Nolan's drama follows physicist J. Robert Oppenheimer as he leads the secret
+                        Manhattan Project to build the first atomic bomb during the Second World War. The film moves
+                        between the race to finish the weapon in the New Mexico desert and the political hearings that
+                        later put his loyalty on trial. Gripping and ambitious, it is a powerful study of genius,
+                        responsibility and the heavy cost of scientific progress.</p>
+                </div>
+                <ul class="sessions" aria-label="Session times">
+                    <li>Fri 8:30 pm</li>
+                    <li>Sat 7:45 pm</li>
+                </ul>
+                <div class="film-buy">
+                    <p class="price">$21.00</p>
+                    <div class="actions">
+                        <a href="booking.html?movie=oppenheimer" class="btn btn-primary">Book now</a>
+                        <button type="button" class="btn btn-secondary" data-movie="oppenheimer">+ Watchlist</button>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <p class="footer-tagline">
+                Discover.
+                <br>
+                Decide.
+                <br>
+                <span>Book.</span>
+            </p>
+
+            <address>
+                77 Dream Factory Lane, Melbourne VIC 3000
+                <br>
+                <a href="tel:+61355504729">(03) 5550 4729</a>
+                &middot;
+                <a href="mailto:hello@cinema-x.example">hello@cinema-x.example</a>
+                <br>
+                Open daily, 10am to midnight
+            </address>
+        </div>
+
+        <p class="footer-credit">
+            &copy; 2026 Cinema-X.
+            Film posters belong to their respective studios.
+            Image credits are listed in Readme.txt.
+        </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
