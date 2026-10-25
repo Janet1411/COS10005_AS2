@@ -271,8 +271,8 @@ function initBooking() {
         var payment = getChecked("payment");
 
         // Show only the fields for the chosen payment method
-        document.getElementById("voucher-fields").hidden = payment !== "voucher";
-        document.getElementById("card-fields").hidden = payment !== "online";
+        showFields("voucher-fields", payment === "voucher");
+        showFields("card-fields", payment === "online");
 
         // While ticked, the billing email copies the email and can't be edited
         billingEmail.readOnly = sameEmail.checked;
@@ -343,6 +343,16 @@ function checkCardNumber(cardType, number) {
         return "This card type needs exactly " + cardLengths[cardType] + " digits.";
     }
     return "";
+}
+
+// Hidden fields are also disabled, because disabled fields are not sent with the form
+function showFields(id, show) {
+    var group = document.getElementById(id);
+    group.hidden = !show;
+    var fields = group.querySelectorAll("input, select");
+    for (var i = 0; i < fields.length; i++) {
+        fields[i].disabled = !show;
+    }
 }
 
 // Discounted prices are rounded up to the nearest 50 cents
@@ -524,12 +534,26 @@ function toggleWatchlist(id) {
 /* Movies page: watchlist buttons */
 function initWatchlistButtons() {
     var buttons = document.querySelectorAll("button[data-movie]");
+    if (buttons.length === 0) {
+        return;
+    }
+
     for (var i = 0; i < buttons.length; i++) {
-        updateWatchButton(buttons[i]);
         buttons[i].addEventListener("click", function (event) {
             toggleWatchlist(event.currentTarget.getAttribute("data-movie"));
             updateWatchButton(event.currentTarget);
         });
+    }
+
+    // Run now, and again on "pageshow": Back can show a saved copy of this page
+    // from before a film was removed on the Watchlist page
+    updateAllButtons();
+    window.addEventListener("pageshow", updateAllButtons);
+
+    function updateAllButtons() {
+        for (var i = 0; i < buttons.length; i++) {
+            updateWatchButton(buttons[i]);
+        }
     }
 }
 
@@ -591,3 +615,5 @@ initBooking();
 initRegister();
 initWatchlistButtons();
 renderWatchlist();
+// Back can also show a saved copy of the Watchlist page, so rebuild it then too
+window.addEventListener("pageshow", renderWatchlist);
