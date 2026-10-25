@@ -143,8 +143,9 @@
                     <div class="field" id="voucher-fields" hidden>
                         <label for="voucher">Voucher code</label>
                         <input type="text" id="voucher" name="voucher" inputmode="numeric" maxlength="12"
-                            aria-describedby="voucher-hint">
+                            aria-describedby="voucher-hint voucher-error">
                         <p class="hint" id="voucher-hint">12 digits</p>
+                        <p class="field-error" aria-live="polite" id="voucher-error"></p>
                     </div>
 
                     <!-- Shown only when Online payment is selected -->

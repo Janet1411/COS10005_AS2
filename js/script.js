@@ -298,12 +298,13 @@ function initBooking() {
         document.getElementById("booking-cost").value = total.toFixed(2);
     }
 
-    // Card fields are only checked for online payment; the voucher is never checked
+    // Card fields are only checked for online payment, and the voucher code only for voucher payment
     function validateBooking() {
         var payment = getChecked("payment");
         var cardType = document.getElementById("card-type").value;
         var cardNumber = document.getElementById("card-number").value.trim();
         var phone = document.getElementById("phone").value.replace(/\s/g, "");
+        var voucher = document.getElementById("voucher").value.trim();
 
         return showErrors([
             ["full-name", document.getElementById("full-name").value.trim() === "" ? "Enter your full name." : ""],
@@ -314,6 +315,7 @@ function initBooking() {
             ["tickets", ticketCount(tickets.value) === 0 ? "Enter a whole number of tickets greater than 0." : ""],
             ["ticket-type", !getChecked("ticket_type") ? "Choose a ticket type." : ""],
             ["payment", !payment ? "Choose a payment method." : ""],
+            ["voucher", payment === "voucher" && !/^\d{12}$/.test(voucher) ? "Enter a 12-digit voucher code, using numbers only." : ""],
             ["card-type", payment === "online" && cardType === "" ? "Choose a card type." : ""],
             ["card-number", payment === "online" ? checkCardNumber(cardType, cardNumber) : ""],
             ["billing-email", !emailPattern.test(billingEmail.value.trim()) ? "Enter a valid billing email address." : ""]
